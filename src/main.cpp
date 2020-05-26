@@ -3,7 +3,7 @@
 
 #define pinBlue 32 //blinking led
 #define pinGreen 33 //button associated led
-#define pinButton 2 //button pin
+#define pinButton 26 //button pin
 
 Button btn (pinButton);
 
