@@ -13,11 +13,19 @@ auto onclick = []() {
   digitalWrite(pinGreen, LOW);
 };
 
+void buttonTask (void *pvParameters){
+  for(;;){
+    btn.timer(millis());
+    yield();
+  }
+}
+
 void setup() {
   pinMode(pinBlue, OUTPUT);
   pinMode(pinGreen, OUTPUT);
   btn.init();
   btn.onClick = onclick;
+  xTaskCreate(buttonTask, "button", 10000, NULL, 1, NULL);
 }
 
 void loop() {
@@ -25,5 +33,4 @@ void loop() {
   delay(1000);                       // wait for a second
   digitalWrite(pinBlue, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);                       // wait for a second
-  btn.timer(millis());
 }
